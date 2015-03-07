@@ -39,14 +39,15 @@ public class playerController : MonoBehaviour {
 			Debug.Log ("Game Over");
 			Application.LoadLevel(0);
 		}
-		if (coll.gameObject.tag == "ground") {
+		if (coll.gameObject.tag == "ground"||coll.gameObject.tag == "obstacle") {
 			onGround = true;
+			Debug.Log ("jump enabled");
 		}
 		
 	}
 	
 	void OnCollisionExit2D(Collision2D coll){
-		if (coll.gameObject.tag == "ground") {
+		if (coll.gameObject.tag == "ground"||coll.gameObject.tag == "obstacle") {
 			onGround = false;
 		}
 	}
