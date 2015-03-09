@@ -46,10 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\WallMovement.cs" />
-     <Compile Include="Assets\cameraMovement.cs" />
-     <Compile Include="Assets\groundMovement.cs" />
-     <Compile Include="Assets\playerController.cs" />
+     <Compile Include="Assets\scripts\WallMovement.cs" />
+     <Compile Include="Assets\scripts\cameraMovement.cs" />
+     <Compile Include="Assets\scripts\groundMovement.cs" />
+     <Compile Include="Assets\scripts\playerController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>B:/Programming/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
