@@ -45,6 +45,7 @@ public class playerController : MonoBehaviour {
 		}
 		//make sure its an object that we can jump on and that we are over the top of it.
 		//it wont jump just if its over the top of it since they need to be touching.
+		//This might be a problem in the future if we have many obstacles that the player touches at the same time.
 		if (coll.gameObject.tag == "ground"&&(coll.collider.bounds.center.y+(coll.collider.bounds.size.y/2))<=(transform.position.y-(GetComponent<BoxCollider2D>().bounds.size.y/2))) {
 			onGround = true;
 		}
