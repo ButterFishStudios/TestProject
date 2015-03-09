@@ -13,6 +13,6 @@ public class WallMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(shouldMove)
-			transform.Translate (Vector2.right * Time.deltaTime);
+			transform.Translate (Vector2.right * Time.deltaTime * 2);
 	}
 }

@@ -4,11 +4,12 @@ using System.Collections;
 public class playerController : MonoBehaviour {
 
 	bool onGround = true;
-	public float maxSpeed = 200f;
+	public float maxSpeed;
+	private float height;
 
 	// Use this for initialization
 	void Start () {
-	
+		height = GetComponent<BoxCollider2D>().bounds.size.y;
 	}
 	
 	// Update is called once per frame
@@ -27,23 +28,25 @@ public class playerController : MonoBehaviour {
 		}
 
 		//make sure the player isn't going too fast
-		/*if(GetComponent<Rigidbody2D>().velocity.magnitude > maxSpeed)
-		{
-			GetComponent<Rigidbody2D>().velocity = GetComponent<Rigidbody2D>().velocity.normalized * maxSpeed;
-		}*/
+		if(GetComponent<Rigidbody2D>().velocity.x > maxSpeed){//to the right
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(maxSpeed-GetComponent<Rigidbody2D>().velocity.x, 0), ForceMode2D.Impulse);
+		}
+		if (GetComponent<Rigidbody2D> ().velocity.x < -maxSpeed) {//to the left
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(-maxSpeed-GetComponent<Rigidbody2D>().velocity.x, 0), ForceMode2D.Impulse);
+		}
 	}
 	
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.name == "Wall") {
 			//GameOver
 			Debug.Log ("Game Over");
-			Application.LoadLevel(0);
+			Application.LoadLevel(0);//loads level from begining
 		}
-		if (coll.gameObject.tag == "ground"||coll.gameObject.tag == "obstacle") {
+		//make sure its an object that we can jump on and that we are over the top of it.
+		//it wont jump just if its over the top of it since they need to be touching.
+		if ((coll.gameObject.tag == "ground"||coll.gameObject.tag == "obstacle")&&(coll.collider.bounds.center.y+(coll.collider.bounds.size.y/2))<=(transform.position.y-(GetComponent<BoxCollider2D>().bounds.size.y/2))) {
 			onGround = true;
-			Debug.Log ("jump enabled");
 		}
-		
 	}
 	
 	void OnCollisionExit2D(Collision2D coll){
